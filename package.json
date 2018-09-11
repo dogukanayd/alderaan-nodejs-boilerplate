@@ -1,10 +1,12 @@
 {
-  "name": "myapp3",
+  "name": "nodejs-project-template",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "watch": "nodemon ./start.js --ignore public/",
-    "start": "concurrently \"npm run watch\" \"npm run assets\" --names \"💻,📦\" --prefix name"
+    "start": "concurrently \"npm run watch\" \"npm run assets\" --names \"💻,📦\" --prefix name",
+    "assets": "webpack -w --display-max-modules 0",
+    "stop": "killall -9 node"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -15,10 +17,12 @@
     "pug": "2.0.0-beta11",
     "mongoose": "5.1.0",
     "mongoose-mongodb-errors": "0.0.2",
-    "dotenv": "4.0.0"
+    "dotenv": "4.0.0",
+    "axios": "0.15.3"
   },
   "devDependencies": {
     "nodemon": "^1.18.3",
-    "webpack": "2.2.1"
+    "webpack": "2.2.1",
+    "concurrently": "3.4.0"
   }
 }
