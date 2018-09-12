@@ -1,15 +1,17 @@
 extends ../templates/layouts
 block content
-    form.form-signin
-        img.mb-4(src='../../assets/brand/bootstrap-solid.svg', alt='', width='72', height='72')
-        h1.h3.mb-3.font-weight-normal REGISTER
-        .form-group
-            input#name.form-control(type="text", placeholder="Name")
-        .form-group
-            input#email.form-control(type='email', aria-describedby='emailHelp', placeholder='Email')
-        .form-group
-            input#password.form-control(type='password', placeholder='Password')
-        .form-group
-        input#passwordCheck.form-control(type='password', placeholder='Password Again')
-        button.btn.btn-primary.col-md-12(type='submit') Submit
+    .container.text-center
+        .row
+            form.form-signin(action="/users/register" method="POST")
+                img.mb-4(src='../../assets/brand/bootstrap-solid.svg', alt='', width='72', height='72')
+                h1.h3.mb-3.font-weight-normal= title
+                .form-group
+                    input#name.form-control(type="text", name="name", placeholder="Name")
+                .form-group
+                    input#email.form-control(type='email', name="email", aria-describedby='emailHelp', placeholder='Email')
+                .form-group
+                    input#password.form-control(type='password',name="password", placeholder='Password')
+                .form-group
+                    input#passwordConfirm.form-control(type='password', name="password-confirm", placeholder='Password Again')
+                    button.btn.btn-primary.col-md-12(type='submit') REGISTER →
 
