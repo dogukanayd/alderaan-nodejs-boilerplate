@@ -30,7 +30,7 @@ exports.validateRegister = (req, res, next) => {
   const errors = req.validationErrors();
   if (errors) {
     req.flash("error", errors.map(err => err.msg));
-    res.render("register", {
+    res.render("/user/register", {
       title: "Register",
       body: req.body,
       flashes: req.flash()
@@ -48,5 +48,6 @@ exports.register = async (req, res, next) => {
 };
 
 exports.success = (req, res) => {
+  req.flash("success", "You are successfully registered!");
   res.redirect("/user/login");
 };
