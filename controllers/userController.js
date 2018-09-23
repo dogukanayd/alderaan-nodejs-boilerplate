@@ -53,5 +53,5 @@ exports.success = (req, res) => {
 };
 
 exports.dashboard = (req, res) => {
-  res.render("../views/user/dashboard");
+  res.render("../views/user/user-dashboard");
 };

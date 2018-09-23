@@ -5,6 +5,7 @@ const authController = require("../controllers/authController.js");
 const { catchErrors } = require("../handlers/errorHandlers");
 
 router.get("/login", userController.loginForm);
+router.post("/login", authController.login);
 router.get("/register", userController.registerForm);
 router.post(
   "/register",
@@ -13,6 +14,8 @@ router.post(
   authController.login
 );
 
-router.get("dashboard", userController.dashboard);
+router.get("/logout", authController.logout);
+
+router.get("/dashboard", authController.isLoggedIn, userController.dashboard);
 
 module.exports = router;
