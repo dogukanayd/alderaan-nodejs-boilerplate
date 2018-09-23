@@ -51,3 +51,7 @@ exports.success = (req, res) => {
   req.flash("success", "You are successfully registered!");
   res.redirect("/user/login");
 };
+
+exports.dashboard = (req, res) => {
+  res.render("../views/user/dashboard");
+};
