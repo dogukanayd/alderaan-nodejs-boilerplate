@@ -1,6 +1,5 @@
-extends templates/layouts
 
-block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+.inner
+  h2= status
+  p= message
+pre.error!= stackHighlighted
