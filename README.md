@@ -1,6 +1,6 @@
 # Alderaan Boilerplate
 
-[![N|Solid](http://icons.iconarchive.com/icons/sensibleworld/starwars/256/Leia-icon.png)](https://nodesource.com/products/nsolid)
+[![N|Solid](http://icons.iconarchive.com/icons/sensibleworld/starwars/256/Leia-icon.png)]
 
 Alderaan Boilerplate is a NodeJS boilerplate includes;
 
