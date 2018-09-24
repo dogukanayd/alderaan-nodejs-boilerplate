@@ -1,0 +1,54 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title Alderaan Boilerplate
+    // Bootstrap core CSS
+    link(href='../../dist/css/bootstrap.min.css', rel='stylesheet')
+    // Custom styles for this template
+    link(href='../../dist/css/simple-sidebar.css', rel='stylesheet')
+    link(href="../../dist/css/custom.css", rel="stylesheet")
+  body
+    #wrapper.toggled
+      // Sidebar
+      #sidebar-wrapper
+        ul.sidebar-nav
+          li.sidebar-brand
+            a(href='#')
+              | Alderaan Boilerplate
+          li
+            a(href='#') Dashboard
+          li
+            a(href='#') Shortcuts
+          li
+            a(href='#') Overview
+          li
+            a(href='#') Events
+          li
+            a(href='#') About
+          li
+            a(href='#') Services
+          li
+            a(href='/user/logout') Logout
+      // /#sidebar-wrapper
+      // Page Content
+      #page-content-wrapper
+        .container-fluid
+          .row
+            img(src="../../images/princess_leia.svg", alt="", height="50px", style="color: white;")
+            .mx-auto(style='width: 400px')
+              h1 Alderaan Boilerplate 
+          block content
+          block messages
+            if locals.flashes
+                  - const categories = Object.keys(locals.flashes)
+                  each category in categories
+                          each message in flashes[category]
+                              .alert.alert-success.alert-dismissible.fade.show.alert-flash(role='alert')
+                                  strong= message
+                                  button.close(type='button', data-dismiss='alert', aria-label='Close' onClick="this.parentElement.remove()")
+                                      span(aria-hidden='true') ×
+   
