@@ -3,7 +3,7 @@ const mongodbErrorHandler = require('mongoose-mongodb-errors');
 const passportLocalMongoose = require('passport-local-mongoose');
 const validator = require('validator');
 
-const { Schema } = mongoose.Schema;
+const { Schema } = mongoose;
 mongoose.Promise = global.Promise;
 
 const userSchema = new Schema({
