@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-const User = mongoose.model('User');
 const promisify = require('es6-promisify');
+
+const User = mongoose.model('User');
 
 exports.loginForm = (req, res) => {
   res.render('../views/user/login', { title: 'LOGIN FORM' });
@@ -17,7 +18,7 @@ exports.validateRegister = (req, res, next) => {
   req.sanitizeBody('email').normalizeEmail({
     gmail_remove_dots: false,
     remove_extension: false,
-    gmail_remove_subaddress: false
+    gmail_remove_subaddress: false,
   });
   req.checkBody('password', 'Password Cannot be Blank!').notEmpty();
   req
@@ -33,7 +34,7 @@ exports.validateRegister = (req, res, next) => {
     res.render('/user/register', {
       title: 'Register',
       body: req.body,
-      flashes: req.flash()
+      flashes: req.flash(),
     });
     return; // stop the fn from running
   }

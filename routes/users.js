@@ -1,8 +1,9 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
 const userController = require('../controllers/userController.js');
 const authController = require('../controllers/authController.js');
-const { catchErrors } = require('../handlers/errorHandlers');
+// const { catchErrors } = require('../handlers/errorHandlers');
+
+const router = express.Router();
 
 router.get('/login', userController.loginForm);
 router.post('/login', authController.login);
@@ -11,7 +12,7 @@ router.post(
   '/register',
   userController.validateRegister,
   userController.register,
-  authController.login
+  authController.login,
 );
 
 router.get('/logout', authController.logout);

@@ -1,14 +1,10 @@
 const passport = require('passport');
-const crypto = require('crypto');
-const mongoose = require('mongoose');
-const User = mongoose.model('User');
-const promisify = require('es6-promisify');
 
 exports.login = passport.authenticate('local', {
   failureRedirect: '/user/login',
   failureFlash: 'Failed Login!',
   successRedirect: '/user/dashboard',
-  successFlash: 'You are now logged in!'
+  successFlash: 'You are now logged in!',
 });
 
 exports.logout = (req, res) => {
@@ -18,7 +14,7 @@ exports.logout = (req, res) => {
 };
 
 exports.isLoggedIn = (req, res, next) => {
-  //first check if the user is authenticated
+  // first check if the user is authenticated
   if (req.isAuthenticated()) {
     next();
     return;
