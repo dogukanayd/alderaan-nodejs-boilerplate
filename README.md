@@ -2,7 +2,7 @@
 
 [![N|Solid](http://icons.iconarchive.com/icons/sensibleworld/starwars/256/Leia-icon.png)](https://nodesource.com/products/nsolid)
 
-Dillinger is a NodeJS boilerplate includes;
+Alderaan Boilerplate is a NodeJS boilerplate includes;
 
 - User Register
 - User Login
