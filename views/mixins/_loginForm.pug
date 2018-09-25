@@ -1,11 +1,12 @@
 mixin loginForm()
 
-    form.form-signin(action='/user/login' method='POST')
-        img.mb-4(src='../../assets/brand/bootstrap-solid.svg', alt='', width='72', height='72')
-        h1.h3.mb-3.font-weight-normal= title
-        label.sr-only(for='inputEmail') Email address
-        input#inputEmail.form-control(type='email', placeholder='Email address', required='', name="email" autofocus='')
-        label.sr-only(for='inputPassword') Password
-        input#inputPassword.form-control(type='password', placeholder='Password',name="password" required='')
-        button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in →
-        p.mt-5.mb-3.text-muted © 2017-2018
+  .container.h-100
+    .row.h-100.justify-content-center.align-items-center
+      form.col-md-12(action='/user/login' method='POST')
+        .form-group
+          img.mx-auto(style='width: 400px;')(src='../../images/princess_leia.svg', alt='', width='150', height='150')
+        .form-group
+          input#inputEmail.form-control(type='email', aria-describedby='emailHelp',required='', name='email' placeholder='Enter email')
+        .form-group
+          input#inputPassword.form-control(type='password',name='password', required='', placeholder='Password')
+        button.btn.btn-primary(type='submit') Login →

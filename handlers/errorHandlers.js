@@ -7,9 +7,9 @@
   express middleware with next()
 */
 
-// exports.catchErrors = fn => function (req, res, next) {
-//     return fn(req, res, next).catch(next);
-//   };
+exports.catchErrors = fn => function (req, res, next) {
+  return fn(req, res, next).catch(next);
+};
 
 /*
     Not Found Error Handler
