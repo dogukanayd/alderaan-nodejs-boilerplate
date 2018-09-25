@@ -1,13 +1,13 @@
-var express = require('express');
-var router = express.Router();
-const userController = require('../controllers/userController.js');
+const express = require('express');
+
+const router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', (req, res) => {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/sidebar', function(req, res, next) {
+router.get('/sidebar', (req, res) => {
   res.render('../views/templates/layoutsSidebar.pug');
 });
 

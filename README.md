@@ -25,6 +25,7 @@ Alderaan Boilerplate requires [Node.js](https://nodejs.org/)
 Install the dependencies and devDependencies and start the server.
 
 ```sh
+$ git clone https://github.com/dogukanayd/alderaan-nodejs-boilerplate.git
 $ cd alderaan-nodejs-boilerplate
 $ npm install
 $ npm start

@@ -2,6 +2,7 @@ extends ../templates/layouts
 
 include ../mixins/_loginform
 block content
-    .container.text-center
-        .row
-            +loginForm()
+  .container 
+    .row
+      .mx-auto(style='width: 400px;')
+        +loginForm()
