@@ -5,11 +5,12 @@ const authController = require('../controllers/authController.js');
 
 const router = express.Router();
 
-router.get('/login', userController.loginForm);
-router.post('/login', authController.login);
-router.get('/register', userController.registerForm);
+router.get('/login', authController.isNotLoggedIn, userController.loginForm);
+router.post('/login', authController.isNotLoggedIn, authController.login);
+router.get('/register', authController.isNotLoggedIn, userController.registerForm);
 router.post(
   '/register',
+  authController.isNotLoggedIn,
   userController.validateRegister,
   userController.register,
   authController.login,
