@@ -1,30 +1,32 @@
-const express = require("express");
-const session = require("express-session");
-const mongoose = require("mongoose");
-const MongoStore = require("connect-mongo")(session);
-const path = require("path");
-const cookieParser = require("cookie-parser");
-const bodyParser = require("body-parser");
-const passport = require("passport");
-const promisify = require("es6-promisify");
-const flash = require("connect-flash");
-const expressValidator = require("express-validator");
-const helpers = require("./helpers");
-const errorHandlers = require("./handlers/errorHandlers");
-require("./handlers/passport");
+const express = require('express');
+const session = require('express-session');
+const mongoose = require('mongoose');
+const MongoStore = require('connect-mongo')(session);
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const passport = require('passport');
+// const promisify = require('es6-promisify');
+const flash = require('connect-flash');
+const expressValidator = require('express-validator');
+const helpers = require('./helpers');
+const errorHandlers = require('./handlers/errorHandlers');
+require('./handlers/passport');
+const sendMail = require('./routes/sendMail');
 
-const routes = require("./routes/index");
-var userRoutes = require("./routes/users");
+const routes = require('./routes/index');
+const userRoutes = require('./routes/users');
 
 // create our Express app
 const app = express();
 
 // view engine setup
-app.set("views", path.join(__dirname, "views")); // this is the folder where we keep our pug files
-app.set("view engine", "pug"); // we use the engine pug, mustache or EJS work great too
+app.set('views', path.join(__dirname, 'views')); // this is the folder where we keep our pug files
+app.set('view engine', 'pug'); // we use the engine pug, mustache or EJS work great too
 
-// serves up static files from the public folder. Anything in public/ will just be served up as the file it is
-app.use(express.static(path.join(__dirname, "public")));
+// serves up static files from the public folder. Anything in public
+// will just be served up as the file it is
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Takes the raw requests and turns them into usable properties on req.body
 app.use(bodyParser.json());
@@ -44,15 +46,16 @@ app.use(
     key: process.env.KEY,
     resave: false,
     saveUninitialized: false,
-    store: new MongoStore({ mongooseConnection: mongoose.connection })
-  })
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  }),
 );
 
 // // Passport JS is what we use to handle our logins
 app.use(passport.initialize());
 app.use(passport.session());
 
-// // The flash middleware let's us use req.flash('error', 'Shit!'), which will then pass that message to the next page the user requests
+// The flash middleware let's us use req.flash('error', 'Shit!'),
+// which will then pass that message to the next page the user requests
 app.use(flash());
 
 // pass variables to our templates + all requests
@@ -71,8 +74,8 @@ app.use((req, res, next) => {
 // });
 
 // After allllll that above middleware, we finally handle our own routes!
-app.use("/", routes);
-app.use("/user", userRoutes);
+app.use('/', routes);
+app.use('/user', userRoutes);
 
 // If that above routes didnt work, we 404 them and forward to error handler
 app.use(errorHandlers.notFound);
@@ -81,13 +84,16 @@ app.use(errorHandlers.notFound);
 app.use(errorHandlers.flashValidationErrors);
 
 // Otherwise this was a really bad error we didn't expect! Shoot eh
-if (app.get("env") === "development") {
+if (app.get('env') === 'development') {
   /* Development Error Handler - Prints stack trace */
   app.use(errorHandlers.developmentErrors);
 }
 
 // production error handler
 app.use(errorHandlers.productionErrors);
+
+// sending email
+app.use('/api/v1/communicate', sendMail);
 
 // done! we export it so we can start the site in start.js
 module.exports = app;
