@@ -29,6 +29,7 @@ exports.notFound = (req, res, next) => {
     Detect if there are mongodb validation errors that we can nicely show via flash messages
   */
 
+/* eslint-disable */
 exports.flashValidationErrors = (err, req, res, next) => {
   if (!err.errors) return next(err);
   // validation errors look like
@@ -36,6 +37,7 @@ exports.flashValidationErrors = (err, req, res, next) => {
   errorKeys.forEach(key => req.flash('error', err.errors[key].message));
   res.redirect('back');
 };
+/* eslint-disable */
 
 /*
     Development Error Handler
