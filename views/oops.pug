@@ -1,1 +1,24 @@
-p This isn't the route you're looking for
+html
+  head
+    link(rel="stylesheet", href="../../assets/css/404.css")
+    link(href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css', rel='stylesheet', integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO', crossorigin='anonymous')
+
+    // ---- Include the above in your HEAD tag --------
+  body
+    .container
+      .row
+        .col-md-12
+          .error-template
+            h1
+              | Oops!
+            h2
+              | 404 Not Found
+            .error-details
+              | Sorry, an error has occured, Requested page not found!
+            .error-actions
+              a.btn.btn-primary.btn-lg(href='/')
+                span.glyphicon.glyphicon-home
+                |                         Take Me Home
+              a.btn.btn-default.btn-lg(href='/contact')
+                span.glyphicon.glyphicon-envelope
+                |  Contact Support

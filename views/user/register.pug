@@ -2,7 +2,7 @@ extends ../templates/layouts
 block content
   .container.text-center
     .row
-      .col-md-6
+      .col-md-12
         form.form-signin(action="/user/register" method="POST")
           img.mb-4(src='../../images/princess_leia.svg', alt='', width='150', height='150')
           h1.h3.mb-3.font-weight-normal= title
@@ -14,7 +14,8 @@ block content
             input#password.form-control(type='password',name="password", placeholder='Password')
           .form-group
             input#passwordConfirm.form-control(type='password', name="password-confirm", placeholder='Password Again')
-            button.btn.btn-primary.col-md-12(type='submit') REGISTER →
+            button.btn.btn-primary.col-md-12(type='submit') REGISTER 
+              i.fas.fa-arrow-circle-right
     
         form.form-signin(action="" method="")
           a.btn.btn-block.btn-social.btn-facebook()
@@ -33,8 +34,7 @@ block content
             span.fab.fa-twitter
             |  Sign in with Twitter
 
-      .col-md-6
-        img.img-responsive(src="../../images/leia_vektor.png", alt="", height="800")
+
 
 
 
