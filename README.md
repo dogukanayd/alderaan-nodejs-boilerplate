@@ -8,7 +8,7 @@ Alderaan Boilerplate is a NodeJS boilerplate includes;
 - User Login
 - User Dashboard
 - ESLint Airbnb
-  and features
+- Bootstrap 4
 
 # Features!
 
@@ -17,6 +17,7 @@ Alderaan Boilerplate is a NodeJS boilerplate includes;
 - Google Login
 - Twitter Login
 - TensorFlowJS
+- Reset password
 
 ![N|Solid](https://github.com/dogukanayd/alderaan-nodejs-boilerplate/blob/master/public/images/login.png?raw=true)
 
