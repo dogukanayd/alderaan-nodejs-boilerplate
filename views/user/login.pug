@@ -1,8 +1,14 @@
 extends ../templates/layouts
 
 include ../mixins/_loginform
+include ../mixins/_socialMediaButtons
 block content
-  .container 
+  .container.text-center 
     .row
-      .mx-auto(style='width: 400px;')
+      .col-md-12
+        hr
         +loginForm()
+        hr
+        p OR
+        +socialMediaButtons()
+        hr
