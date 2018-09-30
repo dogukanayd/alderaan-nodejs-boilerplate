@@ -18,6 +18,7 @@ Alderaan Boilerplate is a NodeJS boilerplate includes;
 - Twitter Login
 - TensorFlowJS
 - Reset password
+- Send email when user sign-up
 
 ![N|Solid](https://github.com/dogukanayd/alderaan-nodejs-boilerplate/blob/master/public/images/login.png?raw=true)
 
