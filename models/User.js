@@ -20,6 +20,30 @@ const userSchema = new Schema({
     required: 'Please supply a name',
     trim: true,
   },
+  accessToken: {
+    type: String,
+    trim: true,
+  },
+  refreshToken: {
+    type: String,
+    trim: true,
+  },
+  profile: {
+    type: String,
+    trim: true,
+  },
+  username: {
+    type: String,
+    trim: true,
+  },
+  provider: {
+    type: String,
+    trim: true,
+  },
+  facebook: {
+    type: String,
+    trim: true,
+  },
 });
 
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
