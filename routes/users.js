@@ -20,4 +20,8 @@ router.get('/logout', authController.logout);
 
 router.get('/dashboard', authController.isLoggedIn, userController.dashboard);
 
+// router.get('/fblogin', authController.facebookLogin);
+
+// router.get('/login/facebook/return', authController.facebookReturn);
+
 module.exports = router;

@@ -30,3 +30,12 @@ exports.isNotLoggedIn = (req, res, next) => {
   }
   res.redirect('/user/dashboard');
 };
+
+
+exports.facebookLogin = passport.authenticate('facebook');
+
+exports.facebookReturn = passport.authenticate('facebook', { failureRedirect: '/login' });
+
+exports.facebookRedirect = (req, res) => {
+  res.redirect('/');
+};
