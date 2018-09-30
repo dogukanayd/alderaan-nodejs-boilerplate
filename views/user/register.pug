@@ -1,8 +1,11 @@
 extends ../templates/layouts
+
+include ../mixins/_socialMediaButtons
 block content
   .container.text-center
     .row
       .col-md-12
+        hr
         form.form-signin(action="/user/register" method="POST")
           img.mb-4(src='../../images/princess_leia.svg', alt='', width='150', height='150')
           h1.h3.mb-3.font-weight-normal= title
@@ -16,23 +19,10 @@ block content
             input#passwordConfirm.form-control(type='password', name="password-confirm", placeholder='Password Again')
             button.btn.btn-primary.col-md-12(type='submit') REGISTER 
               i.fas.fa-arrow-circle-right
-    
-        form.form-signin(action="" method="")
-          a.btn.btn-block.btn-social.btn-facebook()
-            span.fab.fa-facebook
-            |  Sign in with Facebook
-
-          a.btn.btn-block.btn-social.btn-github()
-            span.fab.fa-github
-            |  Sign in with GitHub
-
-          a.btn.btn-block.btn-social.btn-google()
-            span.fab.fa-google
-            |  Sign in with Google
-
-          a.btn.btn-block.btn-social.btn-twitter()
-            span.fab.fa-twitter
-            |  Sign in with Twitter
+        hr
+        p OR
+        +socialMediaButtons()
+        hr
 
 
 
