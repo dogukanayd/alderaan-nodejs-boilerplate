@@ -1,7 +1,7 @@
 const passport = require('passport');
 const { ensureLoggedIn } = require('connect-ensure-login');
 const mongoose = require('mongoose');
-const promisify = require('es6-promisify');
+// const promisify = require('es6-promisify');
 
 const User = mongoose.model('User');
 
@@ -59,6 +59,9 @@ exports.getUserInfo = async (req, res) => {
     accessToken: req.user.accessToken,
     provider: req.user.provider,
   });
-  const register = promisify(User.register, User);
-  await register(user, req.body.password);
+  // const register = promisify(User.register, User);
+  // await register(user, 'alo');
+  await user
+    .save()
+    .catch(e => console.log(e));
 };
