@@ -1,5 +1,9 @@
 const passport = require('passport');
 const { ensureLoggedIn } = require('connect-ensure-login');
+const mongoose = require('mongoose');
+const promisify = require('es6-promisify');
+
+const User = mongoose.model('User');
 
 
 exports.login = passport.authenticate('local', {
@@ -45,8 +49,16 @@ exports.facebookRedirect = (req, res) => {
 exports.facebookEnsure = ensureLoggedIn();
 
 exports.getUserInfo = async (req, res) => {
+  const data = req.user._json;
   res.send(req.user.emails[0].value);
-  // const user = new User({ email: req.body.email, name: req.body.name });
-  // const register = promisify(User.register, User);
-  // await register(user, req.body.password);
+  const user = new User({
+    socialID: data.id,
+    email: data.email,
+    name: data.first_name,
+    familyName: data.last_name,
+    accessToken: req.user.accessToken,
+    provider: req.user.provider,
+  });
+  const register = promisify(User.register, User);
+  await register(user, req.body.password);
 };

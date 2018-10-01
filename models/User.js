@@ -24,6 +24,10 @@ const userSchema = new Schema({
     required: 'Please supply a name',
     trim: true,
   },
+  familyName: {
+    type: String,
+    trim: true,
+  },
   accessToken: {
     type: String,
     trim: true,
