@@ -10,11 +10,16 @@ passport.use(User.createStrategy());
 passport.use(
   new Strategy(
     {
-      clientID: process.env.CLIENT_ID,
-      clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: 'http://localhost:7777/login/facebook/return',
+      clientID: process.env.FACEBOOK_APP_ID,
+      clientSecret: process.env.FACEBOOK_APP_SECRET,
+      callbackURL: process.env.FACEBOOK_CALLBACK_URL,
+      profileFields: ['id', 'emails', 'name'],
     },
-    ((accessToken, refreshToken, profile, cb) => cb(null, profile)
+    ((accessToken, refreshToken, profile, cb) => {
+      /* eslint no-param-reassign: "error" */
+      profile.accessToken = accessToken;
+      cb(null, profile);
+    }
     ),
   ),
 );

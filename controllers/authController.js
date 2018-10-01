@@ -1,4 +1,6 @@
 const passport = require('passport');
+const { ensureLoggedIn } = require('connect-ensure-login');
+
 
 exports.login = passport.authenticate('local', {
   failureRedirect: '/user/login',
@@ -32,10 +34,19 @@ exports.isNotLoggedIn = (req, res, next) => {
 };
 
 
-exports.facebookLogin = passport.authenticate('facebook');
+exports.facebookLogin = passport.authenticate('facebook', { scope: ['email', 'user_likes'] });
 
 exports.facebookReturn = passport.authenticate('facebook', { failureRedirect: '/login' });
 
 exports.facebookRedirect = (req, res) => {
   res.redirect('/');
+};
+
+exports.facebookEnsure = ensureLoggedIn();
+
+exports.getUserInfo = async (req, res) => {
+  res.send(req.user.emails[0].value);
+  // const user = new User({ email: req.body.email, name: req.body.name });
+  // const register = promisify(User.register, User);
+  // await register(user, req.body.password);
 };

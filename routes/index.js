@@ -18,10 +18,6 @@ router.get('/login/facebook', authController.facebookLogin);
 
 router.get('/login/facebook/return', authController.facebookReturn, authController.facebookRedirect);
 
-router.get('/profile',
-  require('connect-ensure-login').ensureLoggedIn(),
-  (req, res) => {
-    res.send('profile', { user: req.user });
-  });
+router.get('/profile', authController.facebookEnsure, authController.getUserInfo);
 
 module.exports = router;
