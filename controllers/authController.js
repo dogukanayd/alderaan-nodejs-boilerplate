@@ -7,9 +7,9 @@ const User = mongoose.model('User');
 
 
 exports.login = passport.authenticate('local', {
-  failureRedirect: '/user/login',
+  failureRedirect: '/login',
   failureFlash: 'Failed Login!',
-  successRedirect: '/user/dashboard',
+  successRedirect: '/dashboard',
   successFlash: 'You are now logged in!',
 });
 
@@ -20,37 +20,42 @@ exports.logout = (req, res) => {
 };
 
 exports.isLoggedIn = (req, res, next) => {
-  // first check if the user is authenticated
   if (req.isAuthenticated()) {
+    // first check if the user is authenticated
     next();
-    return;
+  } else {
+    req.flash('error', 'Oops you must be logged in to do that!');
+    res.redirect('/login');
   }
-  req.flash('error', 'Oops you must be logged in to do that!');
-  res.redirect('login');
 };
 
 exports.isNotLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated()) {
+    // if user is not logged in next()
     next();
-    return;
+  } else {
+    // if logged in, return it to dashboard
+    res.redirect('/dashboard');
   }
-  res.redirect('/user/dashboard');
 };
 
 
 exports.facebookLogin = passport.authenticate('facebook', { scope: ['email', 'user_likes'] });
 
-exports.facebookReturn = passport.authenticate('facebook', { failureRedirect: '/login' });
+exports.facebookReturn = passport.authenticate('facebook', { failureRedirect: '/login', successRedirect: '/savefbprofile' });
 
-exports.facebookRedirect = (req, res) => {
-  res.redirect('/');
+
+exports.facebookRedirect = (res) => {
+  res.redirect('/savefbprofile');
 };
 
 exports.facebookEnsure = ensureLoggedIn();
 
-exports.getUserInfo = async (req, res) => {
+
+exports.getUserInfoFromFacebook = async (req, res) => {
+  /* eslint no-underscore-dangle: ["error", { "allow": ["_json"] }] */
   const data = req.user._json;
-  res.send(req.user.emails[0].value);
+  // res.send(req.user.emails[0].value);
   const user = new User({
     socialID: data.id,
     email: data.email,
@@ -64,4 +69,5 @@ exports.getUserInfo = async (req, res) => {
   await user
     .save()
     .catch(e => console.log(e));
+  res.redirect('/dashboard');
 };

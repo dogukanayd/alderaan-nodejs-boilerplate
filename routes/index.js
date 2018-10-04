@@ -16,8 +16,10 @@ router.get('/sidebar', (req, res) => {
 
 router.get('/login/facebook', authController.facebookLogin);
 
-router.get('/login/facebook/return', authController.facebookReturn, authController.facebookRedirect);
+router.get('/login/facebook/return', authController.facebookReturn);
 
-router.get('/profile', authController.facebookEnsure, authController.getUserInfo);
+router.get('/savefbprofile',
+  authController.facebookEnsure,
+  authController.getUserInfoFromFacebook);
 
 module.exports = router;

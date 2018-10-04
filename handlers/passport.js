@@ -5,7 +5,7 @@ const { Strategy } = require('passport-facebook');
 const User = mongoose.model('User');
 
 
-// passport.use(User.createStrategy());
+passport.use(User.createStrategy());
 
 passport.use(
   new Strategy(

@@ -31,7 +31,7 @@ exports.validateRegister = (req, res, next) => {
   const errors = req.validationErrors();
   if (errors) {
     req.flash('error', errors.map(err => err.msg));
-    res.render('/user/register', {
+    res.render('../views/user/register', {
       title: 'Register',
       body: req.body,
       flashes: req.flash(),
@@ -39,6 +39,18 @@ exports.validateRegister = (req, res, next) => {
     return; // stop the fn from running
   }
   next(); // there were no errors!
+};
+
+exports.isUnique = async (req, res, next) => {
+  // this func is checks the db and if the the register email is already in use or not
+  // we might want to add this functionality to validateRegister
+  const notUnique = await User.findOne({ email: req.body.email });
+  if (notUnique) {
+    req.flash('error', 'This email is already in use');
+    res.redirect('/register');
+    return;
+  }
+  next();
 };
 
 exports.register = async (req, res, next) => {
@@ -50,7 +62,7 @@ exports.register = async (req, res, next) => {
 
 exports.success = (req, res) => {
   req.flash('success', 'You are successfully registered!');
-  res.redirect('/user/login');
+  res.redirect('/login');
 };
 
 exports.dashboard = (req, res) => {
