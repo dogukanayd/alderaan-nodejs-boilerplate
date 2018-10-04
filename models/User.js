@@ -7,6 +7,10 @@ const { Schema } = mongoose;
 mongoose.Promise = global.Promise;
 
 const userSchema = new Schema({
+  socialID: {
+    type: String,
+    trim: true,
+  },
   email: {
     type: String,
     unique: true,
@@ -15,11 +19,28 @@ const userSchema = new Schema({
     validate: [validator.isEmail, 'Invalid Email Address'],
     required: 'Please Supply an email address',
   },
+  password: {
+    type: String,
+    trim: true,
+  },
   name: {
     type: String,
     required: 'Please supply a name',
     trim: true,
   },
+  familyName: {
+    type: String,
+    trim: true,
+  },
+  accessToken: {
+    type: String,
+    trim: true,
+  },
+  provider: {
+    type: String,
+    trim: true,
+  },
+
 });
 
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });

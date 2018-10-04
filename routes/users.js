@@ -12,6 +12,7 @@ router.post(
   '/register',
   authController.isNotLoggedIn,
   userController.validateRegister,
+  userController.isUnique,
   userController.register,
   authController.login,
 );
