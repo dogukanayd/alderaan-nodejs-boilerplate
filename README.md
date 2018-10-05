@@ -9,10 +9,9 @@ Alderaan Boilerplate is a NodeJS boilerplate includes;
 - User Dashboard
 - ESLint Airbnb
 - Bootstrap 4
-
+- Facebook Login
 # Features!
 
-- Facebook Login
 - Github Login
 - Google Login
 - Twitter Login
