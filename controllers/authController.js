@@ -51,8 +51,44 @@ exports.facebookRedirect = (res) => {
 
 exports.facebookEnsure = ensureLoggedIn();
 
+/*eslint-disable*/
+exports.postUserFacebookLikes = async (req, res) => {
+  const data = req.user._json;
+  var url = `https://graph.facebook.com/v3.1/${data.id}/likes?fields=id%2Cname%2Cfan_count%2Ccategory%2Cpicture&access_token=${req.user.accessToken}&limit=100`;
 
-exports.getUserInfoFromFacebook = async (req, res) => {
+  // List of fb likes
+  let likes = [];
+
+
+  async function getUser(url) {
+    try {
+      const response = await axios.get(url);
+      if (response.data.data.length === 0) return null;
+
+      likes = [...likes,...response.data.data]
+      return response.data.paging.next
+    } catch (error) {
+      console.error(error);
+      return null
+    }
+  }
+
+  const getAllUserLikes = (url) =>{
+    getUser(url)
+    .then((result) => {
+      if (result != null) {
+        getAllUserLikes(result)
+      } else {
+        console.log(likes)
+      }
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+};
+
+exports.getUserInfoFromFacebook = async (req, res, next) => {
   /* eslint no-underscore-dangle: ["error", { "allow": ["_json"] }] */
   const data = req.user._json;
   // res.send(req.user.emails[0].value);
@@ -69,6 +105,6 @@ exports.getUserInfoFromFacebook = async (req, res) => {
   await user
     .save()
     .catch(e => console.log(e));
-  res.redirect('/dashboard');
+  // res.redirect('/dashboard');
+  next();
 };
-
