@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "axios": "0.15.3",
-    "bcrypt": "^3.0.1",
     "body-parser": "^1.18.3",
     "connect-ensure-login": "^0.1.1",
     "connect-flash": "0.1.1",

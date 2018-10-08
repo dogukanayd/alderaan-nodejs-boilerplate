@@ -71,3 +71,4 @@ exports.getUserInfoFromFacebook = async (req, res) => {
     .catch(e => console.log(e));
   res.redirect('/dashboard');
 };
+

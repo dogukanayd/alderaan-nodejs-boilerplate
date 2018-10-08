@@ -21,4 +21,6 @@ router.get('/logout', authController.logout);
 
 router.get('/dashboard', authController.isLoggedIn, userController.dashboard);
 
+router.get('/api/likes', userController.facebookLike);
+
 module.exports = router;

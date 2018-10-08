@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const promisify = require('es6-promisify');
 
 const User = mongoose.model('User');
+const UserLikes = mongoose.model('UserLikes');
 
 exports.loginForm = (req, res) => {
   res.render('../views/user/login', { title: 'LOGIN FORM' });
@@ -67,4 +68,9 @@ exports.success = (req, res) => {
 
 exports.dashboard = (req, res) => {
   res.render('../views/user/user-dashboard');
+};
+
+exports.facebookLike = async (req, res) => {
+  const likes = await UserLikes.find();
+  res.json(likes);
 };

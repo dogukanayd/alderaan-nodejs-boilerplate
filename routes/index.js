@@ -22,4 +22,5 @@ router.get('/savefbprofile',
   authController.facebookEnsure,
   authController.getUserInfoFromFacebook);
 
+
 module.exports = router;
