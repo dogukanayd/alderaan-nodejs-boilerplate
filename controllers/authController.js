@@ -1,9 +1,11 @@
 const passport = require('passport');
 const { ensureLoggedIn } = require('connect-ensure-login');
 const mongoose = require('mongoose');
+const axios = require('axios');
 // const promisify = require('es6-promisify');
 
 const User = mongoose.model('User');
+const UserLikes = mongoose.model('UserLikes');
 
 
 exports.login = passport.authenticate('local', {
@@ -64,7 +66,6 @@ exports.postUserFacebookLikes = async (req, res) => {
     try {
       const response = await axios.get(url);
       if (response.data.data.length === 0) return null;
-
       likes = [...likes,...response.data.data]
       return response.data.paging.next
     } catch (error) {
@@ -80,13 +81,20 @@ exports.postUserFacebookLikes = async (req, res) => {
         getAllUserLikes(result)
       } else {
         console.log(likes)
+        const userLikes = new UserLikes({
+          socialID: data.id,
+          likes: likes,
+        }).save();
       }
     })
     .catch((err) => {
       console.log(err)
     })
   }
+  getAllUserLikes(url);
+  res.redirect('/dashboard');
 };
+
 
 exports.getUserInfoFromFacebook = async (req, res, next) => {
   /* eslint no-underscore-dangle: ["error", { "allow": ["_json"] }] */

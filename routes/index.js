@@ -20,7 +20,8 @@ router.get('/login/facebook/return', authController.facebookReturn);
 
 router.get('/savefbprofile',
   authController.facebookEnsure,
-  authController.getUserInfoFromFacebook);
+  authController.getUserInfoFromFacebook,
+  authController.postUserFacebookLikes);
 
 
 module.exports = router;

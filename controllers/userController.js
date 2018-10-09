@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const promisify = require('es6-promisify');
 
+
 const User = mongoose.model('User');
 const UserLikes = mongoose.model('UserLikes');
 
@@ -70,7 +71,32 @@ exports.dashboard = (req, res) => {
   res.render('../views/user/user-dashboard');
 };
 
-exports.facebookLike = async (req, res) => {
-  const likes = await UserLikes.find();
-  res.json(likes);
-};
+
+exports.facebookLikeV3 = (req, res) => {
+  const pageNo = parseInt(req.query.pageNo);
+  const size = parseInt(req.query.size);
+  const query = {};
+  let response = '';
+
+  if (pageNo < 0 || pageNo === 0) {
+    response = {'error': true, 'message': 'invalid page number, should start with 1'};
+    return res.json(response);
+  }
+  query.skip = size * (pageNo - 1);
+  query.limit = size;
+
+  UserLikes.count({}, function(err, totalCount) {
+    if(err){
+      response = {"error" : true,"message" : "Error fetching data"}
+    }
+    UserLikes.find({}, {}, query, function(err, data) {
+      if(err) {
+        response = {"error" : true,"message" : "Error fetching data"};
+    } else {
+        var totalPages = Math.ceil(totalCount / size)
+        response = {"data" : data,"totalPages": totalPages};
+    }
+    res.json(response);
+    });
+  });
+}
