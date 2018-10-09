@@ -71,7 +71,7 @@ exports.dashboard = (req, res) => {
   res.render('../views/user/user-dashboard');
 };
 
-
+/*eslint-disable*/
 exports.facebookLikeV3 = (req, res) => {
   const pageNo = parseInt(req.query.pageNo);
   const size = parseInt(req.query.size);
