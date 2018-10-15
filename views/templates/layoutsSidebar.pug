@@ -12,43 +12,45 @@ html(lang='en')
     // Custom styles for this template
     link(href="../../assets/css/custom.css", rel="stylesheet")
   body
-    #wrapper.toggled
-      // Sidebar
-      #sidebar-wrapper
-        ul.sidebar-nav
-          li.sidebar-brand
-            a(href='#')
-              | Alderaan Boilerplate
-          li
-            a(href='#') Dashboard
-          li
-            a(href='#') Shortcuts
-          li
-            a(href='#') Overview
-          li
-            a(href='#') Events
-          li
-            a(href='#') About
-          li
-            a(href='#') Services
-          li
-            a(href='/logout') Logout
-      // /#sidebar-wrapper
-      // Page Content
-      #page-content-wrapper
-        .container-fluid
-          .row
-            img(src="../../images/princess_leia.svg", alt="", height="50px", style="color: white;")
-            .mx-auto(style='width: 400px')
-              h1 Alderaan Boilerplate 
-          block content
-          block messages
-            if locals.flashes
-                  - const categories = Object.keys(locals.flashes)
-                  each category in categories
-                          each message in flashes[category]
-                              .alert.alert-success.alert-dismissible.fade.show.alert-flash(role='alert')
-                                  strong= message
-                                  button.close(type='button', data-dismiss='alert', aria-label='Close' onClick="this.parentElement.remove()")
-                                      span(aria-hidden='true') ×
+    #app
+      #wrapper.toggled
+        // Sidebar
+        #sidebar-wrapper
+          ul.sidebar-nav
+            li.sidebar-brand
+              a(href='#')
+                | Alderaan Boilerplate
+            li
+              a(href='#') Dashboard
+            li
+              a(href='#') Shortcuts
+            li
+              a(href='#') Overview
+            li
+              a(href='#') Events
+            li
+              a(href='#') About
+            li
+              a(href='#') Services
+            li
+              a(href='/logout') Logout
+        // /#sidebar-wrapper
+        // Page Content
+        #page-content-wrapper
+          .container-fluid
+            .row
+              img(src="../../images/princess_leia.svg", alt="", height="50px", style="color: white;")
+              .mx-auto(style='width: 400px')
+                h1 Alderaan Boilerplate 
+            block content
+            block messages
+              if locals.flashes
+                    - const categories = Object.keys(locals.flashes)
+                    each category in categories
+                            each message in flashes[category]
+                                .alert.alert-success.alert-dismissible.fade.show.alert-flash(role='alert')
+                                    strong= message
+                                    button.close(type='button', data-dismiss='alert', aria-label='Close' onClick="this.parentElement.remove()")
+                                        span(aria-hidden='true') ×
+    script(src="/javascripts/bundle.js")
    

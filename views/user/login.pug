@@ -1,13 +1,13 @@
 extends ../templates/layouts
 
-include ../mixins/_loginform
+
 include ../mixins/_socialMediaButtons
 block content
   .container.text-center 
     .row
       .col-md-12
         hr
-        +loginForm()
+        login-form
         hr
         p OR
         +socialMediaButtons()

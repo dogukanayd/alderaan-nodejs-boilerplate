@@ -1,5 +1,7 @@
 const passport = require('passport');
-const { ensureLoggedIn } = require('connect-ensure-login');
+const {
+  ensureLoggedIn,
+} = require('connect-ensure-login');
 const mongoose = require('mongoose');
 // const promisify = require('es6-promisify');
 
@@ -40,9 +42,14 @@ exports.isNotLoggedIn = (req, res, next) => {
 };
 
 
-exports.facebookLogin = passport.authenticate('facebook', { scope: ['email', 'user_likes'] });
+exports.facebookLogin = passport.authenticate('facebook', {
+  scope: ['email', 'user_likes'],
+});
 
-exports.facebookReturn = passport.authenticate('facebook', { failureRedirect: '/login', successRedirect: '/savefbprofile' });
+exports.facebookReturn = passport.authenticate('facebook', {
+  failureRedirect: '/login',
+  successRedirect: '/savefbprofile',
+});
 
 
 exports.facebookRedirect = (res) => {
@@ -71,4 +78,3 @@ exports.getUserInfoFromFacebook = async (req, res) => {
     .catch(e => console.log(e));
   res.redirect('/dashboard');
 };
-

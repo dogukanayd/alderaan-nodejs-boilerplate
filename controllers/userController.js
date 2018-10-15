@@ -5,11 +5,15 @@ const User = mongoose.model('User');
 const UserLikes = mongoose.model('UserLikes');
 
 exports.loginForm = (req, res) => {
-  res.render('../views/user/login', { title: 'LOGIN FORM' });
+  res.render('../views/user/login', {
+    title: 'LOGIN FORM',
+  });
 };
 
 exports.registerForm = (req, res) => {
-  res.render('../views/user/register', { title: 'REGISTER FORM' });
+  res.render('../views/user/register', {
+    title: 'REGISTER FORM',
+  });
 };
 
 exports.validateRegister = (req, res, next) => {
@@ -45,7 +49,9 @@ exports.validateRegister = (req, res, next) => {
 exports.isUnique = async (req, res, next) => {
   // this func is checks the db and if the the register email is already in use or not
   // we might want to add this functionality to validateRegister
-  const notUnique = await User.findOne({ email: req.body.email });
+  const notUnique = await User.findOne({
+    email: req.body.email,
+  });
   if (notUnique) {
     req.flash('error', 'This email is already in use');
     res.redirect('/register');
@@ -55,7 +61,10 @@ exports.isUnique = async (req, res, next) => {
 };
 
 exports.register = async (req, res, next) => {
-  const user = new User({ email: req.body.email, name: req.body.name });
+  const user = new User({
+    email: req.body.email,
+    name: req.body.name,
+  });
   const register = promisify(User.register, User);
   await register(user, req.body.password);
   next();

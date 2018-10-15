@@ -23,14 +23,14 @@ require('./models/UserLikes');
 const app = require('./app');
 
 
-app.set('port', process.env.PORT || 7777);
-const server = app.listen(app.get('port'), () => {
-  console.log(`Express running → localhost:${server.address().port}`);
-});
+// app.set('port', process.env.PORT || 7777);
+// const server = app.listen(app.get('port'), () => {
+//   console.log(`Express running → localhost:${server.address().port}`);
+// });
 
-// const certOptions = {
-//   key: fs.readFileSync(path.resolve('./build/cert/server.key')),
-//   cert: fs.readFileSync(path.resolve('./build/cert/server.crt')),
-// };
-
-// const server = https.createServer(certOptions, app).listen(443);
+const certOptions = {
+  key: fs.readFileSync(path.resolve('./build/cert/server.key')),
+  cert: fs.readFileSync(path.resolve('./build/cert/server.crt')),
+};
+/*eslint-disable*/
+const server = https.createServer(certOptions, app).listen(443);

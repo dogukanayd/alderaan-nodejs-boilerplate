@@ -1,3 +1,6 @@
 /node_modules
 /variables.env
 /.vscode
+/public/javascripts/bundle.js
+/yarn.lock
+/build

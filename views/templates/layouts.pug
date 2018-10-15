@@ -21,13 +21,15 @@ html(lang='en')
       
       
   body
-    block content
-    block messages
-      if locals.flashes
-        - const categories = Object.keys(locals.flashes)
-        each category in categories
-          each message in flashes[category]
-            .alert.alert-success.alert-dismissible.fade.show.alert-flash(role='alert')
-              strong= message
-              button.close(type='button', data-dismiss='alert', aria-label='Close' onClick="this.parentElement.remove()")
-                  span(aria-hidden='true') ×
+    #app
+      block content
+      block messages
+        if locals.flashes
+          - const categories = Object.keys(locals.flashes)
+          each category in categories
+            each message in flashes[category]
+              .alert.alert-success.alert-dismissible.fade.show.alert-flash(role='alert')
+                strong= message
+                button.close(type='button', data-dismiss='alert', aria-label='Close' onClick="this.parentElement.remove()")
+                    span(aria-hidden='true') ×
+    script(src="/javascripts/bundle.js")
